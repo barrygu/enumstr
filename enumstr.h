@@ -9,6 +9,12 @@
 #define ENUM_STRCMP strcasecmp
 #endif
 
+#ifndef __ENUM_NAMES_TYPE__
+#define __ENUM_NAMES_TYPE__
+typedef struct { int value; const char *name; }  ENUM_NAME_MAP_T;
+const char *GetNameByValue(ENUM_NAME_MAP_T mapEnumName[], int count, int value);
+#endif // __ENUM_STR_TYPE__
+
 #ifndef GENERATE_ENUM_NAMES
 
     #define ENUM_ITEM( element )              element ,
@@ -42,17 +48,11 @@
 	#define NUMBER_OF( ENUM_NAME )             ((int)(sizeof ( g_mev2n_##ENUM_NAME ) / sizeof ( g_mev2n_##ENUM_NAME[0] )) - 1)
 	#define INVALID_ENUM_ITEM( ENUM_NAME )     invalid##ENUM_NAME##EnumValue
 
-	#define BEGIN_ENUM( ENUM_NAME )            static struct { int value; const char *name; } g_mev2n_##ENUM_NAME [] = {
+	#define BEGIN_ENUM( ENUM_NAME )            static ENUM_NAME_MAP_T g_mev2n_##ENUM_NAME [] = {
 	#define END_ENUM( ENUM_NAME )              {invalid##ENUM_NAME##EnumValue, (0)} }; \
 	const char* Get##ENUM_NAME##NameByValue ( ENUM_NAME value ) \
 	{ \
-		int i; \
-		for ( i = 0; i < NUMBER_OF( ENUM_NAME ) ; i++ ) \
-		{ \
-			if ( g_mev2n_##ENUM_NAME [i].value == (int)value ) \
-				return g_mev2n_##ENUM_NAME [i].name; \
-		} \
-		return (0); \
+		return GetNameByValue(g_mev2n_##ENUM_NAME, NUMBER_OF( ENUM_NAME ), value); \
 	} \
 	ENUM_NAME Get##ENUM_NAME##ValueByName ( const char * name ) \
 	{ \
