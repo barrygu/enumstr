@@ -1,5 +1,8 @@
 #undef ENUM_ITEM
 #undef ENUM_ITEM_VALUE
+#undef ENUM_ITEM_NAME
+#undef ENUM_ITEM_NONAME
+
 #undef BEGIN_ENUM
 #undef END_ENUM
 #undef NUMBER_OF
@@ -19,6 +22,8 @@ const char *GetNameByValue(ENUM_NAME_MAP_T mapEnumName[], int count, int value);
 
     #define ENUM_ITEM( element )              element ,
     #define ENUM_ITEM_VALUE( element, value ) element = value ,
+    #define ENUM_ITEM_NAME( element, name )   element ,
+    #define ENUM_ITEM_NONAME( element, name ) element ,
 
     #define BEGIN_ENUM( ENUM_NAME )           typedef enum etag##ENUM_NAME {
     #define END_ENUM( ENUM_NAME )             invalid##ENUM_NAME##EnumValue } ENUM_NAME; \
@@ -45,6 +50,9 @@ const char *GetNameByValue(ENUM_NAME_MAP_T mapEnumName[], int count, int value);
 
 	#define ENUM_ITEM( element )               { element, #element } ,
 	#define ENUM_ITEM_VALUE( element, value )  ENUM_ITEM( element )
+    #define ENUM_ITEM_NAME( element, name )    { element, name } ,
+    #define ENUM_ITEM_NONAME( element, name )  
+
 	#define NUMBER_OF( ENUM_NAME )             ((int)(sizeof ( g_mev2n_##ENUM_NAME ) / sizeof ( g_mev2n_##ENUM_NAME[0] )) - 1)
 	#define INVALID_ENUM_ITEM( ENUM_NAME )     invalid##ENUM_NAME##EnumValue
 

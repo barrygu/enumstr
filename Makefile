@@ -9,7 +9,7 @@ OBJS=$(SRCS:.cpp=.o)
 CC=g++
 CFLAGS=-g -Wall -fPIC -O2
 
-#CFLAGS+=-save-temps
+CFLAGS+=-save-temps
 
 all: $(TARGET)
 
