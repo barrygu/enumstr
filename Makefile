@@ -28,6 +28,8 @@ clean:
 distclean: clean
 	rm -f $(TARGET)
 
+# c++0x option can support <enum type>::<enum elem>
+# to use this option, g++ version should above 4.3
 CFLAGS+=-std=c++0x
 newenum: newenum.o
-	$(CC) -s -o newenum.exe newenum.o
+	$(CC) -g -o newenum.exe newenum.o
