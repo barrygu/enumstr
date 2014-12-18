@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
     
     value = MyEnum::Green;
     valueName = MyEnumToString(value);
-    std::cout << MyEnum::Green << " to string:" << valueName << std::endl;
+    std::cout << value << " to string:" << valueName << std::endl;
 
     value = MyEnum::Black;
     valueName = MyEnumToString(value);
