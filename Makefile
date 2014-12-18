@@ -23,10 +23,11 @@ $(TARGET): $(OBJS)
 
 clean:
 	rm -f $(OBJS) $(SRCS:.cpp=.ii) $(SRCS:.cpp=.s)
+	rm -f newenum.[^c]*
 
 distclean: clean
 	rm -f $(TARGET)
 
 CFLAGS+=-std=c++0x
-newtest: newenum.o
+newenum: newenum.o
 	$(CC) -s -o newenum.exe newenum.o
