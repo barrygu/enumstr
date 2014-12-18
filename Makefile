@@ -7,7 +7,7 @@ SRCS=\
 OBJS=$(SRCS:.cpp=.o)
 
 CC=g++
-CFLAGS=-g -Wall -fPIC -O2
+CFLAGS=-g -Wall -O2
 
 CFLAGS+=-save-temps
 
@@ -26,3 +26,7 @@ clean:
 
 distclean: clean
 	rm -f $(TARGET)
+
+CFLAGS+=-std=c++0x
+newtest: newenum.o
+	$(CC) -s -o newenum.exe newenum.o
