@@ -102,7 +102,7 @@ NAMED_ENUM(WeekDays, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Satur
 	} return defaultValue; }
 
 #define ItemNameOfEnum(enumname, itemvalue) enumname##ToString(itemvalue)
-// in this macro, set the defaultvalue to -1
+// in this macro, set the default value to -1
 #define ItemValueOfEnum(enumname, itemname) enumname##ToValue(itemname, -1)
 
 /**
