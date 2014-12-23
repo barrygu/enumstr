@@ -1,0 +1,10 @@
+#ignore everything
+*
+
+#except .c source
+!*.c
+!*.h
+!*.cpp
+!Makefile
+!*.png
+!.git*
