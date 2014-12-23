@@ -14,7 +14,8 @@ CPP=g++
 CPPFLAGS=-g -Wall -O2
 CPPFLAGS+=-save-temps
 
-all: $(TARGET) cnamedenum newenum
+ALL-TARGET=$(TARGET) cnamedenum newenum
+all: $(ALL-TARGET)
 
 $(OBJS): days.h numbers.h fruits.h enumstr.h Makefile
 
@@ -33,13 +34,13 @@ clean:
 	rm -f cnamedenum.[^c]
 
 distclean: clean
-	rm -f $(TARGET)
+	rm -f $(ALL-TARGET:=.exe)
 
 cnamedenum: cnamedenum.o
 	$(CC) -g -o $@ $^
 
 # c++0x option can support <enum type>::<enum elem>
 # to use this option, g++ version should above 4.3
-CPPFLAGS+=-std=c++0x
+newenum: CPPFLAGS+=-std=c++0x
 newenum: newenum.o
 	$(CPP) -g -o $@ $^
